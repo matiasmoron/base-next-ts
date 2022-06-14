@@ -1,3 +1,6 @@
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const path = require('path');
+
 const RULES = {
   OFF: 'off',
   WARN: 'warn',
@@ -10,6 +13,17 @@ module.exports = {
     es2021: true,
     node: true,
   },
+  settings: {
+    'import/parsers': {
+      '@typescript-eslint/parser': ['.ts', '.tsx'],
+    },
+    'import/extensions': ['.ts', '.tsx'],
+    'import/resolver': {
+      typescript: {
+        project: [path.resolve(__dirname, 'tsconfig.json')],
+      },
+    },
+  },
   extends: [
     'plugin:react/recommended',
     'airbnb',
@@ -17,7 +31,6 @@ module.exports = {
     'plugin:import/errors',
     'plugin:import/warnings',
     'plugin:import/typescript',
-    'plugin:react/recommended',
     'plugin:react-hooks/recommended',
     'prettier',
   ],
@@ -27,9 +40,27 @@ module.exports = {
       jsx: true,
     },
     ecmaVersion: 'latest',
-    sourceType: 'module',
+    // project: './tsconfig.json',
+    // tsconfigRootDir: __dirname,
   },
-  plugins: ['react', '@typescript-eslint'],
+  plugins: ['react', 'import', '@typescript-eslint'],
+  overrides: [
+    {
+      files: ['*.ts', '*.tsx'], // Your TypeScript files extension
+
+      // You should extend TypeScript plugins here,
+      // instead of extending them outside the `overrides`.
+      // If you don't want to extend any rules, you don't need an `extends` attribute.
+      extends: [
+        'plugin:@typescript-eslint/recommended',
+        'plugin:@typescript-eslint/recommended-requiring-type-checking',
+      ],
+
+      parserOptions: {
+        project: ['./tsconfig.json'], // Specify it only for TypeScript files
+      },
+    },
+  ],
   rules: {
     'react/react-in-jsx-scope': RULES.OFF,
     'react/prop-types': RULES.OFF,
@@ -55,6 +86,7 @@ module.exports = {
         'newlines-between': 'never',
       },
     ],
+    'import/prefer-default-export': RULES.OFF,
     '@typescript-eslint/camelcase': RULES.OFF,
     '@typescript-eslint/explicit-function-return-type': RULES.OFF,
     '@typescript-eslint/explicit-member-accessibility': [
@@ -104,5 +136,10 @@ module.exports = {
     // https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/init-declarations.md
     'init-declarations': RULES.OFF,
     '@typescript-eslint/init-declarations': RULES.OFF,
+
+    'jsx-a11y/label-has-associated-control': RULES.OFF,
+    'eslint-disable react/jsx-props-no-spreading': RULES.OFF,
+    'react/require-default-props': RULES.OFF,
+    'no-multi-assign': RULES.OFF,
   },
 };

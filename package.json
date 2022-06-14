@@ -1,12 +1,13 @@
 {
-  "name": "enveavor-client",
+  "name": "base-next-ts-project",
   "version": "0.1.0",
   "private": true,
   "scripts": {
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "eslint": "next lint .",
+    "eslint": "eslint src --ext .js,.jsx,.ts,.tsx --cache",
+    "eslint:fix": "eslint src --ext .js,.jsx,.ts,.tsx --cache --fix",
     "prettier": "prettier --check ./**/*.{ts,tsx}",
     "prettier-fix": "prettier --write ./**/*.{ts,tsx}",
     "prepare": "husky install"
@@ -14,7 +15,6 @@
   "dependencies": {
     "axios": "^0.26.1",
     "next": "12.1.0",
-    "node-sass": "^7.0.1",
     "react": "17.0.2",
     "react-dom": "17.0.2"
   },

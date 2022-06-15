@@ -1,4 +1,4 @@
-// eslint-disable-next-line @typescript-eslint/no-var-requires
+/* eslint-disable */
 const path = require('path');
 
 const RULES = {
@@ -13,17 +13,6 @@ module.exports = {
     es2021: true,
     node: true,
   },
-  settings: {
-    'import/parsers': {
-      '@typescript-eslint/parser': ['.ts', '.tsx'],
-    },
-    'import/extensions': ['.ts', '.tsx'],
-    'import/resolver': {
-      typescript: {
-        project: [path.resolve(__dirname, 'tsconfig.json')],
-      },
-    },
-  },
   extends: [
     'plugin:react/recommended',
     'airbnb',
@@ -35,14 +24,6 @@ module.exports = {
     'prettier',
   ],
   parser: '@typescript-eslint/parser',
-  parserOptions: {
-    ecmaFeatures: {
-      jsx: true,
-    },
-    ecmaVersion: 'latest',
-    // project: './tsconfig.json',
-    // tsconfigRootDir: __dirname,
-  },
   plugins: ['react', 'import', '@typescript-eslint'],
   overrides: [
     {
@@ -103,7 +84,7 @@ module.exports = {
 
     // https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/no-empty-function.md
     'no-empty-function': RULES.OFF,
-    '@typescript-eslint/no-empty-function': [RULES.ERROR],
+    '@typescript-eslint/no-empty-function': [RULES.OFF],
 
     // https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/no-shadow.md
     'no-shadow': RULES.OFF,
@@ -141,5 +122,16 @@ module.exports = {
     'eslint-disable react/jsx-props-no-spreading': RULES.OFF,
     'react/require-default-props': RULES.OFF,
     'no-multi-assign': RULES.OFF,
+  },
+  settings: {
+    'import/parsers': {
+      '@typescript-eslint/parser': ['.ts', '.tsx'],
+    },
+    'import/extensions': ['.ts', '.tsx'],
+    'import/resolver': {
+      typescript: {
+        project: [path.resolve(__dirname, 'tsconfig.json')],
+      },
+    },
   },
 };

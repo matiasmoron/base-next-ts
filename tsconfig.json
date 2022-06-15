@@ -27,6 +27,6 @@
       "services/*": ["core/services/*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "./src/**/*"],
+  "include": ["./src/**/*"],
   "exclude": ["./node_modules"]
 }
